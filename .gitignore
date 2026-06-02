@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+# Local validation outputs
+commented_settings_check.json
+modelsplit_p2_out.json
+modelsplit_test_out.json
+reorg_check_out.json
+test_out.json

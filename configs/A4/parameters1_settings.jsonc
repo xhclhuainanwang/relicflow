@@ -1,0 +1,80 @@
+{
+  // Model name. Keep "A4" for current adapter.
+  "model": "A4",
+
+  "settings": {
+    // Output directory label (currently metadata only; recommended keep as-is).
+    "outpath": "./models/A4/",
+
+    // x = m/T integration range for nBE.
+    // Recommended for freeze-out scans: xmin=0.1, xmax=1e8.
+    "xmin": 0.1,
+    "xmax": 100000000,
+
+    // nBE ODE solver controls.
+    // nBEerr: relative tolerance target (smaller => more accurate, slower).
+    // Recommended baseline: 1e-3.
+    "nBEerr": 0.001,
+    // Safety factor for adaptive step-size (0.8~0.95 commonly stable).
+    "nBEsafety": 0.9,
+    // Initial step size at xmin.
+    // Recommended baseline: 1e-4 (can increase to 1e-3 for faster rough scans).
+    "nBEhinit": 0.0001,
+
+    // cBE controls (kept for compatibility; not used in current nBE-only workflow).
+    "cBEerr": 0.01,
+    "cBEsafety": 0.9,
+    "cBEhinit": 0.001,
+    "cBEerrNewton": 0.001,
+    "cBEerrMaxNewton": 0.4,
+
+    // Thermal-average tabulation controls (dominant runtime knobs).
+    // Nx: initial x-grid points before refinement.
+    // Recommended: 50 for precision; 25~30 for fast scans.
+    "Nx": 50,
+    // iacc: interpolation refinement criterion (smaller => denser table).
+    // Recommended baseline: 0.1.
+    "iacc": 0.1,
+    // imax: max refinement rounds.
+    // Recommended baseline: 5; fast mode can use 3.
+    "imax": 5,
+    // pg: integration precision goal exponent for quad (~10^-pg relative).
+    // Recommended: 5 (precise), 4 (faster), 3 (very fast coarse).
+    "pg": 5,
+
+    // Use relativistic thermal average.
+    // Recommended for this project: true.
+    "RelThermalAv": true,
+
+    // fBE controls (compatibility only; not used in nBE-only workflow).
+    "fBEerr": 0.0001,
+    "fBEsafety": 0.9,
+    "fBEhinit": 0.0001,
+    "fBEerrNewton": 1e-05,
+    "fBEerrMaxNewton": 0.2,
+
+    // Momentum-grid controls for fBE (compatibility only).
+    "qmin": 1e-08,
+    "qmax": 12,
+    "qN": 200,
+    "qATOqB": 0.1,
+
+    // Kinetic-decoupling helper for fBE init (compatibility only).
+    "gamcap": 100000,
+    "nBEprevious": false,
+
+    // Angular-average tabulation controls (compatibility only).
+    "plotMaxR": 5,
+    "plotPoints": 50,
+    "Np": 200,
+
+    // Degrees-of-freedom table file name (resolved via --dof-file path in CLI).
+    // Recommended keep this string and set --dof-file=data/dof_Drees_etal.dat.
+    "dof": "dof_Drees_etal.dat",
+
+    // Advanced toggles (compatibility only; nBE-only path keeps them false).
+    "Analyticsvtheta": false,
+    "FullCel": false,
+    "KDonly": false
+  }
+}
