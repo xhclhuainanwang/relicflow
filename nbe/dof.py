@@ -26,6 +26,8 @@ class DofTable:
         return cls(t=t, heff=heff, sqrtgeff=sqrtgeff, sqrtgstar=sqrtgstar, dheff_dt=dheff_dt)
 
     def _interp(self, x: float | np.ndarray, xp: np.ndarray, fp: np.ndarray) -> float | np.ndarray:
+        if np.isscalar(x):
+            return float(np.interp(float(x), xp, fp, left=fp[0], right=fp[-1]))
         xx = np.asarray(x, dtype=float)
         yy = np.interp(xx, xp, fp, left=fp[0], right=fp[-1])
         if np.isscalar(x):
@@ -48,5 +50,7 @@ class DofTable:
         return np.pi / (3.0 * np.sqrt(10.0)) * self.isqrtgeff(temp) * np.asarray(temp) ** 2 / M_PL_REDUCED
 
     def s(self, temp: float | np.ndarray) -> float | np.ndarray:
+        if np.isscalar(temp):
+            tt = float(temp)
+            return self.iheff(tt) * (2.0 * np.pi**2) / 45.0 * tt**3
         return self.iheff(temp) * (2.0 * np.pi**2) / 45.0 * np.asarray(temp) ** 3
-

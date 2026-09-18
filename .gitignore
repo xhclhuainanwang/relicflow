@@ -7,3 +7,13 @@ modelsplit_p2_out.json
 modelsplit_test_out.json
 reorg_check_out.json
 test_out.json
+*_smoke*.json
+compare_*.json
+
+# Generated optional native Z4/VLL build artifacts
+nbe/native/*.dll
+nbe/native/*.obj
+nbe/native/*.pdb
+nbe/native/*.exp
+nbe/native/*.lib
+z4_native.obj

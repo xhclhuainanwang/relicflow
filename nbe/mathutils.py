@@ -7,6 +7,18 @@ from .constants import X_BEXP
 
 
 def bessel_k1_approx(x: float | np.ndarray) -> float | np.ndarray:
+    if np.isscalar(x):
+        xx = float(x)
+        if xx < X_BEXP:
+            return float(special.kv(1, xx))
+        return math.exp(-xx) * math.sqrt(math.pi / (2.0 * xx)) * (
+            1.0
+            + 72765.0 / (262144.0 * xx**5)
+            - 4725.0 / (32768.0 * xx**4)
+            + 105.0 / (1024.0 * xx**3)
+            - 15.0 / (128.0 * xx**2)
+            + 3.0 / (8.0 * xx)
+        )
     xx = np.asarray(x, dtype=float)
     out = np.empty_like(xx)
     mask = xx < X_BEXP
@@ -26,6 +38,18 @@ def bessel_k1_approx(x: float | np.ndarray) -> float | np.ndarray:
 
 
 def bessel_k2_approx(x: float | np.ndarray) -> float | np.ndarray:
+    if np.isscalar(x):
+        xx = float(x)
+        if xx < X_BEXP:
+            return float(special.kv(2, xx))
+        return math.exp(-xx) * math.sqrt(math.pi / (2.0 * xx)) * (
+            1.0
+            - 135135.0 / (262144.0 * xx**5)
+            + 10395.0 / (32768.0 * xx**4)
+            - 315.0 / (1024.0 * xx**3)
+            + 105.0 / (128.0 * xx**2)
+            + 15.0 / (8.0 * xx)
+        )
     xx = np.asarray(x, dtype=float)
     out = np.empty_like(xx)
     mask = xx < X_BEXP
@@ -46,4 +70,3 @@ def bessel_k2_approx(x: float | np.ndarray) -> float | np.ndarray:
 
 def neq(mass: float, x: float, g_dm: float) -> float:
     return mass**3 * g_dm * bessel_k2_approx(x) / (2.0 * math.pi**2 * x)
-

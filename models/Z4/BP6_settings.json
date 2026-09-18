@@ -1,0 +1,29 @@
+{
+  "model": "Z4",
+  "settings": {
+    "xmin": 1.0000e-1,
+    "cxmin": 1.0000e-1,
+    "xmax": 1.5000e+5,
+    "xlock1": 2.0000,
+    "FullCel": true,
+    "KDonly": false,
+    "Ydleqi0": 0.0000,
+    "nBEhinit": 1.0000e-2,
+    "nBEerr": 1.0000e-1,
+    "cBEhinit": 1.0000e-2,
+    "cBEerr": 1.0000e-1,
+    "cBEsafety": 9.0000e-1,
+    "cBEerrNewton": 1.0000e-2,
+    "cBEerrMaxNewton": 9.0000e-1,
+    "cBENewtonDamping": 1.0000,
+    "cBEMaxStepRetries": 5000,
+    "cBEuseTrapezoidal": false,
+    "fullCellSkipXdm": null,
+    "fullCellDim": 32,
+    "fullCellNMu": 4,
+    "fullCellNU": 8,
+    "fullCellUBase": 16.0000,
+    "fullCellUTail": 8.0000,
+    "fullCellUCap": 40.0000
+  }
+}
